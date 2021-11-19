@@ -75,6 +75,18 @@ assetRouter.route('/col3')
    
 })
 
+assetRouter.route('/col4')
+.get((req,res,next)=>{
+  var columns = Object.keys(data1[0]);
+  res.statusCode = 200;
+  res.setHeader('Content-type','application/json');
+  var ret = columns.filter(obj=> obj != "dateCreated");
+  console.log(ret);
+  res.json(ret);
+
+
+})
+
 
 
 
