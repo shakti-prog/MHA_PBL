@@ -4,40 +4,74 @@ const Assets = require('../models/asset');
 
 const assetRouter = express.Router();
 
-const data1 = [
-  {"ordersent":10,"solditemsamount":87,"solditemscount":12,"dateCreated":"12/12/2021"},{"ordersent":5,"solditemsamount":25,"solditemscount":12,"dateCreated":"6/12/2021"},{"ordersent":7,"solditemsamount":12,"solditemscount":12,"dateCreated":"1/12/2021"},
-  {"ordersent":6,"solditemsamount":90,"solditemscount":12,"dateCreated":"11/12/2021"},{"ordersent":4,"solditemsamount":75,"solditemscount":12,"dateCreated":"9/11/2021"},{"ordersent":15,"solditemsamount":50,"solditemscount":12,"dateCreated":"5/11/2021"},
-  {"ordersent":13,"solditemsamount":89,"solditemscount":12,"dateCreated":"3/11/2021"},{"ordersent":8,"solditemsamount":78,"solditemscount":12,"dateCreated":"1/11/2021"},{"ordersent":10,"solditemsamount":17,"solditemscount":12,"dateCreated":"17/10/2021"},
-  {"ordersent":11,"solditemsamount":68,"solditemscount":12,"dateCreated":"2/10/2021"},{"ordersent":17,"solditemsamount":54,"solditemscount":12,"dateCreated":"21/10/2021"},{"ordersent":14,"solditemsamount":34,"solditemscount":12,"dateCreated":"13/10/2021"},
-  {"ordersent":14,"solditemsamount":10,"solditemscount":12,"dateCreated":"12/9/2021"},{"ordersent":15,"solditemsamount":25,"solditemscount":12,"dateCreated":"6/9/2021"},{"ordersent":37,"solditemsamount":12,"solditemscount":12,"dateCreated":"1/9/2021"},
-  {"ordersent":26,"solditemsamount":92,"solditemscount":12,"dateCreated":"11/9/2021"},{"ordersent":14,"solditemsamount":95,"solditemscount":12,"dateCreated":"9/8/2021"},{"ordersent":25,"solditemsamount":51,"solditemscount":12,"dateCreated":"5/8/2021"},
-  {"ordersent":53,"solditemsamount":81,"solditemscount":12,"dateCreated":"3/8/2021"},{"ordersent":8,"solditemsamount":18,"solditemscount":12,"dateCreated":"1/8/2021"},{"ordersent":11,"solditemsamount":10,"solditemscount":12,"dateCreated":"17/7/2021"},
-  {"ordersent":21,"solditemsamount":60,"solditemscount":12,"dateCreated":"2/7/2021"},{"ordersent":7,"solditemsamount":24,"solditemscount":12,"dateCreated":"21/7/2021"},{"ordersent":84,"solditemsamount":31,"solditemscount":12,"dateCreated":"13/7/2021"}
+const col1 = ["ordersent","solditemsamount","/solditemscount","dataCreated"]
+const col2 = ["ordersent","Requests","dataCreated"]
 
+const data1 = [
+  [10,87,12,"12/12/2021"],
+  [5,5,12,"6/12/2021"],
+  [7,,2,12,"1/12/2021"],
+  [6,0,12,"11/12/2021"],
+  [4,5,12,"9/11/2021"],
+  [15,50,12,"5/11/2021"],
+  [13,89,12,"3/11/2021"],
+  [8,,8,12,"1/11/2021"],
+  [10,17,12,"17/10/2021"],
+  [11,68,12,"2/10/2021"],
+  [17,54,12,"21/10/2021"],
+  [14,34,12,"13/10/2021"],
+  [14,10,12,"12/9/2021"],
+  [15,25,12,"6/9/2021"],
+  [37,12,12,"1/9/2021"],
+  [26,92,12,"11/9/2021"]
+  ,[14,95,12,"9/8/2021"],
+  [25,51,12,"5/8/2021"],
+  [53,81,12,"3/8/2021"],
+  [8,,8,12,"1/8/2021"],
+  [11,10,12,"17/7/2021"],
+  [21,60,12,"2/7/2021"],
+  [7,,4,12,"21/7/2021"],
+  [84,31,12,"13/7/2021"]
 ];
 
 const data2 = [
-  {"ordersent":10,"Requests":2,"dateCreated":"12/12/2021"},{"ordersent":5,"Requests":25,"dateCreated":"6/12/2021"},{"ordersent":7,"Requests":14,"dateCreated":"1/12/2021"},
-  {"ordersent":6,"Requests":9,"dateCreated":"11/12/2021"},{"ordersent":4,"Requests":23,"dateCreated":"9/11/2021"}, {"ordersent":15,"Requests":1,"dateCreated":"5/11/2021"},
-  {"ordersent":13,"Requests":3,"dateCreated":"3/11/2021"},{"ordersent":8,"Requests":11,"dateCreated":"21/11/2021"},{"ordersent":10,"Requests":4,"dateCreated":"13/10/2021"},
-  {"ordersent":12,"Requests":14,"dateCreated":"2/10/2021"},{"ordersent":8,"Requests":9,"dateCreated":"21/10/2021"},{"ordersent":4,"Requests":19,"dateCreated":"13/10/2021"},
-  {"ordersent":11,"Requests":22,"dateCreated":"12/9/2021"},{"ordersent":15,"Requests":15,"dateCreated":"6/9/2021"},{"ordersent":17,"Requests":13,"dateCreated":"1/9/2021"},
-  {"ordersent":16,"Requests":4,"dateCreated":"11/9/2021"},{"ordersent":3,"Requests":23,"dateCreated":"9/8/2021"}, {"ordersent":12,"Requests":11,"dateCreated":"5/8/2021"},
-  {"ordersent":23,"Requests":12,"dateCreated":"3/8/2021"},{"ordersent":2,"Requests":31,"dateCreated":"21/8/2021"},{"ordersent":13,"Requests":14,"dateCreated":"13/7/2021"},
-  {"ordersent":32,"Requests":12,"dateCreated":"2/7/2021"},{"ordersent":9,"Requests":19,"dateCreated":"21/7/2021"},{"ordersent":24,"Requests":13,"dateCreated":"13/7/2021"}
+  [12,13,"12/12/2021"],
+  [11,12,"11/6/2021"],
+  [13,14,"2/2/2021"],
+  [20,25,"13/4/2022"],
+  [17,18,"1/6/2021"],
+  [23,20,"17/1/2020"],
+  [43,21,"14/1/2022"],
+  [62,22,"24/8/2022"],
+  [12,28,"3/9/2022"],
+  [19,71,"5/10/2022"],
+  [14,28,"7/12/2022"],
+  [27,78,"9/8/2022"],
+  [89,54,"25/7/2022"],
+  [14,45,"17/9/2022"],
+  [67,31,"13/2/2022"],
+  [56,29,"25/3/2022"],
+  [43,42,"5/7/2021"],
+  [27,18,"4/9/2021"],
+  [29,67,"8/12/2021"],
+  [67,18,"9/10/2021"],
+  [51,21,"14/11/2021"],
+  [91,30,"13/2/2021"],
+  [31,21,"12/3/2021"],
+  [67,74,"17/8/2021"],
 ];
 
 
 const data4 = ["tab1","tab2"];
 /*const data3 = [
-  {"solditemsamount":100"solditemscount":12,,"Requests":2,"dateCreated":"12/12/2021"},{"solditemsamount":250"solditemscount":12,,"Requests":25,"dateCreated":"6/12/2021"},{"solditemsamount":120"solditemscount":12,,"Requests":14,"dateCreated":"1/12/2021"},
-  {"solditemsamount":90,"solditemscount":12,"Requests":9,"dateCreated":"11/12/2021"},{"solditemsamount":75,"solditemscount":12,"Requests":23,"dateCreated":"9/11/2021"},{"solditemsamount":50,"solditemscount":12,"Requests":1,"dateCreated":"5/11/2021"},
-  {"solditemsamount":89,"solditemscount":12,"Requests":3,"dateCreated":"3/11/2021"},{"solditemsamount":78,"solditemscount":12,"Requests":11,"dateCreated":"21/11/2021"},{"solditemsamount":100"solditemscount":12,,"Requests":4,"dateCreated":"13/10/2021"},
-  {"solditemsamount":68,"solditemscount":12,"Requests":3,"dateCreated":"2/10/2021"},{"solditemsamount":56,"solditemscount":12,"Requests":14,"dateCreated":"21/10/2021"},{"solditemsamount":78,"solditemscount":12,"Requests":18,"dateCreated":"13/9/2021"},
-  {"solditemsamount":101"solditemscount":12,,"Requests":12,"dateCreated":"12/9/2021"},{"solditemsamount":254"solditemscount":12,,"Requests":22,"dateCreated":"6/9/2021"},{"solditemsamount":121"solditemscount":12,,"Requests":13,"dateCreated":"1/9/2021"},
-  {"solditemsamount":91,"solditemscount":12,"Requests":19,"dateCreated":"11/8/2021"},{"solditemsamount":72,"solditemscount":12,"Requests":21,"dateCreated":"9/8/2021"},{"solditemsamount":51,"solditemscount":12,"Requests":12,"dateCreated":"5/8/2021"},
-  {"solditemsamount":83,"solditemscount":12,"Requests":23,"dateCreated":"3/8/2021"},{"solditemsamount":71,"solditemscount":12,"Requests":14,"dateCreated":"21/7/2021"},{"solditemsamount":102"solditemscount":12,,"Requests":41,"dateCreated":"13/7/2021"},
-  {"solditemsamount":61,"solditemscount":12,"Requests":13,"dateCreated":"2/7/2021"},{"solditemsamount":50,"solditemscount":12,"Requests":10,"dateCreated":"21/7/2021"},{"solditemsamount":73,"solditemscount":12,"Requests":10,"dateCreated":"13/7/2021"}
+  {"solditemsamount":10012,"dateCreate":"12/12/2021"},{"solditemsamount":25012,,"dateCreatd":"6/12/2021"},{"solditemsamount":12012,,"dateCreatd":"1/12/2021"},
+  {"solditemsamount":90,12,dateCreated:"11/12/2021"},{"solditemsamount":75,12,"dateCreate":"9/11/2021"},{"solditemsamount":50,12,dateCreated:"5/11/2021"},
+  {"solditemsamount":89,12,dateCreated:"3/11/2021"},{"solditemsamount":78,12,"dateCreate":"21/11/2021"},{"solditemsamount":10012,"dateCreate":"13/10/2021"},
+  {"solditemsamount":68,12,dateCreated:"2/10/2021"},{"solditemsamount":56,12,"dateCreate":"21/10/2021"},{"solditemsamount":78,12,"dateCreate":"13/9/2021"},
+  {"solditemsamount":10112,,"dateCreatd":"12/9/2021"},{"solditemsamount":25412,,"dateCreatd":"6/9/2021"},{"solditemsamount":12112,,"dateCreatd":"1/9/2021"},
+  {"solditemsamount":91,12,"dateCreate":"11/8/2021"},{"solditemsamount":72,12,"dateCreate":"9/8/2021"},{"solditemsamount":51,12,"dateCreate":"5/8/2021"},
+  {"solditemsamount":83,12,"dateCreate":"3/8/2021"},{"solditemsamount":71,12,"dateCreate":"21/7/2021"},{"solditemsamount":10212,,"dateCreatd":"13/7/2021"},
+  {"solditemsamount":61,12,"dateCreate":"2/7/2021"},{"solditemsamount":50,12,"dateCreate":"21/7/2021"},{"solditemsamount":73,12,"dateCreate":"13/7/2021"}
 ]; */
 
 
@@ -51,23 +85,25 @@ assetRouter.route('/col1')
 
 assetRouter.route('/col1')
 .post((req,res,next)=>{
+
    console.log(req.body);
    if(req!= null){
       const tabName = req.body.tabname;
-      if(tabName == 'tab1'){
+      const table = String(tabName);
+      if(table == "tab1"){
         res.statusCode = 200;
         res.setHeader('Content-type','application/json');
-        res.json(data1); 
+        res.json({data:data1,cols:col1}); 
       }
-      else if(tabName == 'tab2'){
+      else if(table == "tab2"){
         res.statusCode = 200
         res.setHeader('Content-type','application/json');
-        res.json(data2);
+        res.json({data:data2,cols:col2}); 
       }
       else{
         res.statusCode = 200
         res.setHeader('Content-type','application/json');
-        res.json(data2);
+        res.json({data:data2,cols:col2}); 
 
       }
      return;
